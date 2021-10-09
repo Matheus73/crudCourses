@@ -1,2 +1,64 @@
-<h1>Register  Page</h1>
-<button>Register</button>
+{% extends 'base.html' %}
+
+{%block 'title'%}
+CRUDCourses - Register
+{% endblock %}
+
+{% block 'body' %}
+<br>
+
+<div class="container">
+
+        {% if status == '1'%}  
+        <div class="alert alert-danger" role="alert">
+              This email is already registered!
+        </div>
+        {%endif%}
+
+        {% if status == '2'%}  
+        <div class="alert alert-danger" role="alert">
+              Name or email cannot be empty!
+        </div>
+        {%endif%}
+
+        {% if status == '3'%}  
+        <div class="alert alert-danger" role="alert">
+              Password must have 8 or more letters!
+        </div>
+        {%endif%}
+
+        {% if status == '0'%}  
+        <div class="alert alert-success" role="alert">
+              User created!
+        </div>
+        {%endif%}
+
+  <div class="row">
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md">
+          <br>
+          <h1>Register</h1>
+          <hr>
+          <form method="POST" action="{% url 'check_register'%}"> {% csrf_token %}
+              <label>Name:</label>
+              <input class="form-control" type="text" placeholder="Name..." name = "name">
+              <br>
+              <label>Email:</label>
+              <input class="form-control" type="text" placeholder="E-mail" name = "email">
+              <br>
+              <label>Password:</label>
+              <input class="form-control" type="password" placeholder="Password" name = "password">
+              <br>
+              <input class="btn btn-success btn-lg" type="submit" value="Submit">
+              <a href="#" class="btn btn-info btn-lg">Login</a>
+          </form>
+      </div>
+      <div class="col-md-3">
+
+      </div>
+  </div>
+
+</div>
+{% endblock %}
