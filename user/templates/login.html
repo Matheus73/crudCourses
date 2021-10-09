@@ -6,6 +6,18 @@ CRUDCourses - Login
 
 {% block 'body' %}
 <div class="container">
+        <br>
+
+        {% if status == '1'%}  
+        <div class="alert alert-danger" role="alert">
+              This user doesn't exists!
+        </div>
+        {%endif%}
+        {% if status == '2'%}  
+        <div class="alert alert-danger" role="alert">
+              You must be logged
+        </div>
+        {%endif%}
     
   <div class="row">
       <div class="col-md-3">
@@ -13,9 +25,9 @@ CRUDCourses - Login
       </div>
       <div class="col-md">
           <br>
-          <h1>Cadastre-se</h1>
+          <h1>Login</h1>
           <hr>
-          <form method="POST" action="#">
+          <form method="POST" action="{% url 'check_login' %}">{% csrf_token %}
               <label>Email:</label>
               <input class="form-control" type="text" placeholder="E-mail" name = "email">
               <br>
